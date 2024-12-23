@@ -1,5 +1,7 @@
 # Project Title: Multi-Service Containerization
 
+![Example Screenshot 1](photos/Multiservices-dockerization.png)
+
 ## Overview
 
 This project demonstrates the containerization of multiple services for a seamless and efficient deployment. The services include:
