@@ -34,124 +34,73 @@ The setup leverages Docker to containerize these services and provides an enviro
 
 ------
 
-## Setup Instructions
+# VProfile Project
 
-### Clone the Repository
+## Overview
+The **VProfile Project** is a web-based application designed to demonstrate a multi-tier architecture using Docker and Docker Compose. This project includes a frontend deployed on Tomcat, a backend service running on MySQL, and configurations for setting up and running the application seamlessly.
 
+## Features
+- Multi-tier architecture with frontend and backend components.
+- Dockerized for simplified deployment and scalability.
+- Pre-configured MySQL database with sample data.
+- Automated build process using Maven.
+
+## Prerequisites
+To set up and run the project, ensure the following tools are installed on your system:
+
+- [Docker](https://www.docker.com/) (v20.10 or later)
+- [Docker Compose](https://docs.docker.com/compose/) (v1.29 or later)
+
+## 
+
+### Dockerfiles
+1. **`Dockerfile-build`**: Builds the project using Maven.
+2. **`Dockerfile-frontend`**: Configures the Tomcat server for the application frontend.
+3. **`Dockerfile-backend`**: Configures the MySQL database with a preloaded schema and data.
+
+### `docker-compose.yml`
+The Compose file defines the services, networks, and volumes needed to deploy the application.
+
+### `db_backup.sql`
+This file contains the SQL dump used to initialize the MySQL database.
+
+
+
+### Step 2: Build Docker Images
+1. **Frontend Image**
+   ```bash
+   docker build -f Dockerfile-frontend -t vprofile-frontend .
+   ```
+2. **Backend Image**
+   ```bash
+   docker build -f Dockerfile-backend -t vprofile-backend .
+   ```
+3. **Build Image (Optional)**
+   ```bash
+   docker build -f Dockerfile-build -t vprofile-build .
+   ```
+
+### Step 3: Run with Docker Compose
+To start the application:
 ```bash
-git clone <repository_url>
-cd <repository_directory>
+docker-compose build
+docker-compose up -d
+```
+This will:
+- Start the MySQL database on port `3306`.
+- Deploy the frontend application on port `80`.
+
+### Step 4: Access the Application
+Open a browser and navigate to:
+```
+http://localhost:80
 ```
 
-### Build and Run Containers
+## Database Details
+The MySQL database is initialized with a schema and sample data:
 
-1. **Build the Maven Project:**
-
-   ```bash
-   docker build -t maven-app ./maven-app
-   ```
-
-2. **Start All Services:**
-
-   ```bash
-   docker-compose up -d
-   ```
-
-------
-
-## Configuration
-
-### Environment Variables
-
-- **MYSQL_ROOT_PASSWORD**: Set the MySQL root password.
-- **RABBITMQ_DEFAULT_USER**: Set the RabbitMQ username.
-- **RABBITMQ_DEFAULT_PASS**: Set the RabbitMQ password.
-
-These can be configured in the `.env` file:
-
-```env
-MYSQL_ROOT_PASSWORD=yourpassword
-RABBITMQ_DEFAULT_USER=guest
-RABBITMQ_DEFAULT_PASS=guest
-```
-
-### Docker Compose File Structure
-
-```yaml
-version: '3.8'
-services:
-  nginx:
-    image: nginx
-    ports:
-      - "8080:80"
-    volumes:
-      - ./nginx:/etc/nginx/conf.d
-
-  tomcat:
-    build:
-      context: ./maven-app
-    ports:
-      - "8081:8080"
-
-  mysql:
-    image: mysql:8.0
-    environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-    volumes:
-      - mysql_data:/var/lib/mysql
-
-  memcached:
-    image: memcached
-    ports:
-      - "11211:11211"
-
-  rabbitmq:
-    image: rabbitmq:management
-    ports:
-      - "15672:15672"
-      - "5672:5672"
-    environment:
-      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
-      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
-
-volumes:
-  mysql_data:
-```
-
-------
-
-## Accessing the Services
-
-- **NGINX**: [http://localhost:8080](http://localhost:8080/)
-- **Tomcat**: [http://localhost:8081](http://localhost:8081/)
-- **RabbitMQ Management Console**: [http://localhost:15672](http://localhost:15672/)
-
-------
-
-## Notes
-
-- Ensure that the `docker-compose.yml` file is correctly configured before running the services.
-
-- Use the logs to debug any issues:
-
-  ```bash
-  docker-compose logs
-  ```
-
-------
-
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for more details.
-
-------
-
-## Contributions
-
-Contributions are welcome! Please fork the repository and submit a pull request for any enhancements or fixes.
-
-------
-
-## Author
-
-[Your Name]
+- **Database Name**: `accounts`
+- **Tables**: `role`, `user`, `user_role`
+- **Sample Credentials**:
+  - Username: `admin_vp`
+  - Password: `admin_vp`
