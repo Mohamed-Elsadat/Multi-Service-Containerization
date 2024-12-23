@@ -86,7 +86,7 @@ To start the application:
 docker-compose build
 docker-compose up -d
 ```
-![Example Screenshot 1](photos/Screenshot 2024-12-22 092503.png)
+![Example Screenshot 1](photos/Screenshot%202024-12-22%20092503.png)
 
 This will:
 
@@ -110,10 +110,10 @@ The MySQL database is initialized with a schema and sample data:
 
 ## Check Memcached and  RabbitMQ work
 
-![Example Screenshot 1](photos/Screenshot 2024-12-22 092546.png)
+![Example Screenshot 1](photos/Screenshot%202024-12-22%20092546.png)
 
-![Example Screenshot 1](photos/Screenshot 2024-12-22 092636.png)
+![Example Screenshot 1](photos/Screenshot%202024-12-22%20092636.png)
 
 ## Puch to docker hub
 
-![Example Screenshot 1](photos/Screenshot 2024-12-22 094139.png)
+![Example Screenshot 1](photos/Screenshot%202024-12-22%20094139.png)
