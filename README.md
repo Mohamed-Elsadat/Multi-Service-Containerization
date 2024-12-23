@@ -86,7 +86,10 @@ To start the application:
 docker-compose build
 docker-compose up -d
 ```
+![Example Screenshot 1](photos/Screenshot 2024-12-22 092503.png)
+
 This will:
+
 - Start the MySQL database on port `3306`.
 - Deploy the frontend application on port `80`.
 
@@ -104,3 +107,13 @@ The MySQL database is initialized with a schema and sample data:
 - **Sample Credentials**:
   - Username: `admin_vp`
   - Password: `admin_vp`
+
+## Check Memcached and  RabbitMQ work
+
+![Example Screenshot 1](photos/Screenshot 2024-12-22 092546.png)
+
+![Example Screenshot 1](photos/Screenshot 2024-12-22 092636.png)
+
+## Puch to docker hub
+
+![Example Screenshot 1](photos/Screenshot 2024-12-22 094139.png)
